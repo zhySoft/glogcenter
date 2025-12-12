@@ -12,7 +12,7 @@ import (
 
 var backupBusy bool = false
 
-func init() {
+func Init() {
 	if !conf.IsEnableBackup() {
 		return
 	}

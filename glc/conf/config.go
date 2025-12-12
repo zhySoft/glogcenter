@@ -63,7 +63,7 @@ var aryBlack []string
 var enableBlackWhiteList bool
 var ipAddCity bool
 
-func init() {
+func Init() {
 	UpdateConfigByEnv()
 }
 

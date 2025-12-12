@@ -210,8 +210,11 @@ func (s *LogDataStorage) createInvertedIndex() int {
 	if docm.User != "" {
 		adds = append(adds, "@"+cmn.ToLower(docm.User))
 	}
+	if docm.Keyword != "" {
+		adds = append(adds, " "+cmn.ToLower(docm.Keyword))
+	}
 
-	tgtStr := docm.System + " " + docm.ServerName + " " + docm.ServerIp + " " + docm.ClientIp + " " + docm.TraceId + " " + docm.LogLevel + " " + docm.User
+	tgtStr := docm.System + " " + docm.ServerName + " " + docm.ServerIp + " " + docm.ClientIp + " " + docm.TraceId + " " + docm.LogLevel + " " + docm.User + " " + docm.Keyword
 	if docm.Detail != "" && conf.IsMulitLineSearch() {
 		tgtStr = tgtStr + " " + docm.Detail // 支持日志列全部行作为索引检索对象
 	} else {

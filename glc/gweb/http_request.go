@@ -93,5 +93,5 @@ func (r *HttpRequest) RequestUrlPath() string {
 }
 
 func (r *HttpRequest) BindJSON(obj any) error {
-	return r.GinCtx.BindJSON(obj)
+	return r.GinCtx.ShouldBind(obj)
 }

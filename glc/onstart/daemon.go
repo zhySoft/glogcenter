@@ -13,7 +13,7 @@ import (
 	"github.com/gotoeasy/glang/cmn"
 )
 
-func init() {
+func Init() {
 
 	// 命令行参数解析，【-d】后台方式启动，【stop】停止，【restart】重启，【-v/version/--version/-version】查看版本
 	// 内部用特殊参数，提示docker方式启动【--docker】固定为非后台方式

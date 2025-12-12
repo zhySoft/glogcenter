@@ -14,7 +14,7 @@ import (
 var catchLoginCheck *cmn.Cache // 缓存：登录失败次数检查
 var catchSession *cmn.Cache    // 缓存：登录会话
 
-func init() {
+func Init() {
 	if conf.IsEnableLogin() {
 		catchLoginCheck = cmn.NewCache(time.Minute * 15)
 		catchSession = cmn.NewCache(time.Hour * 12)

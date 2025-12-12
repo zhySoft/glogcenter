@@ -28,7 +28,7 @@ type StorageModel struct {
 	TotalSize  string `json:"totalSize,omitempty"`  // 占用空间
 }
 
-func init() {
+func Init() {
 	go func() {
 		if conf.IsStoreNameAutoAddDate() && conf.GetSaveDays() > 0 {
 			// removeStorageByDays() // 注释掉，没必要启动时就清理
