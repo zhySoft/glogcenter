@@ -175,8 +175,10 @@ func (w centerWriter) deleteFileLog(logDir string) (err error) {
 		return
 	}
 
-	logAge := 7 * 24 * time.Hour
-	cutoff := time.Now().Add(-1 * logAge)
+	if LogAge == 0 {
+		LogAge = 7 * 24 * time.Hour
+	}
+	cutoff := time.Now().Add(-1 * LogAge)
 	for _, v := range dir {
 		if v.IsDir() {
 			fl, e := v.Info()

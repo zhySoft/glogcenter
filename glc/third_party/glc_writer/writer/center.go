@@ -35,6 +35,7 @@ const (
 type Formatter func(interface{}) string
 
 var Debug bool
+var LogAge time.Duration // 日志有效期
 
 type LogCenterWriter struct {
 	Out               io.Writer
