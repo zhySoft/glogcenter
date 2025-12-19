@@ -136,6 +136,10 @@ func (w LogCenterWriter) joinTextLog(evt map[string]interface{}) {
 			text = fmt.Sprintf("%v\n%v=%v", text, k, v)
 		}
 	}
+	// glc日志中心不记录空日志
+	if text == "" {
+		text = "nil"
+	}
 	evt[zerolog.MessageFieldName] = text
 }
 
@@ -155,6 +159,8 @@ func (w LogCenterWriter) formatFieldsValue(evt map[string]interface{}) {
 
 		if f != nil {
 			evt[k] = f(v)
+		} else {
+			evt[k] = fmt.Sprintf("%s", v)
 		}
 	}
 	return

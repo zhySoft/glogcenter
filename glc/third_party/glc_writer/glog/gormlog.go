@@ -3,6 +3,8 @@ package glog
 import (
 	"context"
 	"fmt"
+	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/rs/zerolog"
@@ -33,6 +35,10 @@ func (g *Glog) LogMode(level gormLog.LogLevel) gormLog.Interface {
 	return g
 }
 func (g *Glog) Info(ctx context.Context, format string, args ...interface{}) {
+	// 去除gorm日志中的caller敏感信息
+	if format == "replacing callback `%s` from %s\n" && len(args) >= 2 {
+		args[1] = formatCaller(args[1])
+	}
 	g.logger.Info().Ctx(ctx).Msgf(format, args...)
 }
 func (g *Glog) Warn(ctx context.Context, format string, args ...interface{}) {
@@ -55,4 +61,20 @@ func (g *Glog) Trace(ctx context.Context, begin time.Time, fc func() (sql string
 	//ctx = context.WithValue(ctx, "rows", rows)          // 影响行数
 
 	g.logger.Debug().Ctx(ctx).Str("elapsed", elapsedStr).Int64("rows", rows).Msg(sql)
+}
+
+// formatCaller
+func formatCaller(i interface{}) string {
+	var c string
+	if cc, ok := i.(string); ok {
+		c = cc
+	}
+	if len(c) > 0 {
+		if cwd, err := os.Getwd(); err == nil {
+			if rel, err := filepath.Rel(cwd, c); err == nil {
+				c = rel
+			}
+		}
+	}
+	return c
 }
