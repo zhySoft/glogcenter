@@ -2,7 +2,6 @@ package writer
 
 import (
 	"bytes"
-	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -84,13 +83,7 @@ func (w centerWriter) write(p []byte) (n int, err error) {
 	if Debug {
 		fmt.Println(string(p))
 	}
-	client := &http.Client{
-		Transport: &http.Transport{ // 直接跳过 SSL 认证
-			TLSClientConfig: &tls.Config{
-				InsecureSkipVerify: true,
-			},
-		},
-	}
+	client := &http.Client{}
 	req, err := http.NewRequest("POST", w.url, payload)
 	if err != nil {
 		return
