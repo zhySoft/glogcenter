@@ -23,7 +23,7 @@ func main() {
 }
 func Run() {
 	global.AppInfo.AppName = "LogCenter"          // 项目名称
-	global.AppInfo.Version = "v25.12.31.001"      // 项目版本
+	global.AppInfo.Version = "26.01.12.001"       // 项目版本
 	global.AppInfo.ServiceName = "LogCenter"      // 服务名称
 	global.AppInfo.ServiceDisplayName = "智慧园日志中心" // 服务显示名称
 	global.AppInfo.ServiceDesc = "用于接收日志"         // 服务描述

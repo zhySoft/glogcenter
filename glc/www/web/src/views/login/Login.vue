@@ -130,7 +130,7 @@ onMounted(async () => {
   height: 100%;
   min-height: 520px;
   background-color: #eee;
-  background-image: url('/image/loginbg.svg');
+  //background-image: url('/image/loginbg.svg');
   background-size: 100% 100%;
   background-size: cover;
 
